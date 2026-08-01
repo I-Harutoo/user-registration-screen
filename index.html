@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー登録フォーム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen mx-full flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow p-8">
+        <h1 class="text-4xl font-bold">ユーザー登録フォーム</h1>
+        <form id="signform" class="space-y-4" novalidate>
+            <div>
+                <label for="name" class="text-gray-700">お名前</label>
+                <input type="text" id="name" required class="border rounded w-full p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="例）山田太郎">
+            </div>
+            <div>
+                <label for="email" class="text-gray-700">メールアドレス</label>
+                <input type="email" id="email" required class="border rounded w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例）yamada@example.com">
+            </div>
+            <div>
+                <label for="password" class="text-gray-700">パスワード</label>
+                <input type="password" id="password" required class="border rounded w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="例）praogjrw">
+            </div>
+            <div>
+                <label for="checkbox" class="text-gray-700">利用規約同意</label>
+                <input type="checkbox" id="checkbox" required class="border rounded w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <p id="message" class="text-sm"></p>
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold hover:bg-blue-700">登録</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById("signform");
+        const message = document.getElementById("message");
+        form.addEventListener("submit",(event)=>{
+            event.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const checkbox = document.getElementById("checkbox").checked;
+
+            if(name===""){
+                message.textContent="名前を入力してください";
+                return;
+            }
+            if(email===""){
+                message.textContent="メールアドレスを入力してください";
+                return;
+            }
+            if(password===""){
+                message.textContent="パスワードを入力してください";
+                return;
+            }
+            if(!checkbox){
+                message.textContent="利用規約に同意してください";
+                return;
+            }
+        })
+    </script>
+</body>
+</html>
